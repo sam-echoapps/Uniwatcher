@@ -119,6 +119,10 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "guideManageReport", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "institutionProfile", detail: { label: "Institution Profile", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "institutionList", detail: { label: "Institution List", iconClass: "fa-solid fa-magnifying-glass", },},
+        { path: "addPartner", detail: { label: "Partners", iconClass: "fa-solid fa-magnifying-glass", },},
+        { path: "partnerProfile", detail: { label: "Partner Profile", iconClass: "fa-solid fa-magnifying-glass", },},
+        { path: "partnerCommission", detail: { label: "Partner Commission", iconClass: "fa-solid fa-magnifying-glass", },},
+        { path: "partnerReport", detail: { label: "Partner Report", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "searchPartnerStudent", detail: { label: "Search Student", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "partnerStudentManagerReport", detail: { label: "Student Manager Report", iconClass: "fa-solid fa-people-roof", }, },
         { path: "partnerStudentProfile", detail: { label: "Student Profile", iconClass: "oj-ux-ico-bar-chart", }, },
@@ -261,6 +265,14 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         ]
       },
       {"name": "Manage Staff","id": "manageManagerUsers","icons": "fa-solid fa-people-roof", "path":"manageManagerUsers"},
+      {"name": "Partner", "id": "partner", "icons": "fa-solid fa-handshake-angle", 
+          "children": [
+            {"name": "Partners","id": "addPartner","icons": "fa-solid fa-user-plus", "path":"addPartner"},
+            {"name": "Partner Profile","id": "partnerProfile","icons": "fa-solid fa-user", "path":"partnerProfile"},
+            // {"name": "Partner Commission","id": "partnerCommission","icons": "fa-solid fa-hand-holding-dollar", "path":"partnerCommission"},
+            {"name": "Partner Report","id": "partnerReport","icons": "oj-ux-ico-bar-chart", "path":"partnerReport"}, 
+          ]
+        },
       {"name": "Help","id": "help","icons": "fa-solid fa-life-ring", "path":"help"},
       ]
     }
