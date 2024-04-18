@@ -163,6 +163,17 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <oj-bind-if test="[[userRole() === 'admin' ]]">
+                <div class="oj-flex oj-sm-justify-content-center" style="margin-bottom: 30px;">
+                    <oj-button id="button1" on-oj-action="[[deletePerson]]" style="background-color: #d9534f;">Delete Student</oj-button>
+                </div>
+            </oj-bind-if>
+            <oj-bind-if test="[[userRole() === 'director' ]]">
+                <div class="oj-flex oj-sm-justify-content-center" style="margin-bottom: 30px;">
+                    <oj-button id="button1" on-oj-action="[[deletePerson]]" style="background-color: #d9534f;">Delete Student</oj-button>
+                </div>
+            </oj-bind-if>
 
         </div>
 
@@ -355,18 +366,38 @@
                 </div>
             </div>
         </div>
+        <div id="credential" style="display: none;">
+            <h6 style="font-weight: 500;font-size: 22px;color: #06668a;margin-left: 20px;">Student Credential</h6>
+            <div class="demo-tab-content">
+                <div class="oj-panel">
+                    <oj-validation-group id="credentialValidation" class="form-container" role="group">
+                        <oj-form-layout id="credential-information" direction="row" max-columns="2" style="margin-left:18%;margin-top:20px;">
+                            <oj-input-text id="studentEmail" label-hint="Email" value="{{email}}" required="true" readonly="true"></oj-input-text>
+                            <oj-input-password id="password" label-hint="Password" required="true"  value="{{password}}"  mask-icon="visible"></oj-input-password>
+                    </oj-form-layout>
+                    </oj-validation-group>
+                    <div class=" oj-flex oj-sm-justify-content-center">
+                        <oj-bind-if test="[[btnAction() == 'save' ]]">
+                        <oj-button id="btnSubmit" class="oj-button-sm" display="icons" on-oj-action="[[addStudentUser]]" style="width: 100px;margin-right: 10px;">
+                            Submit
+                        </oj-button>
+                        </oj-bind-if>
+                        <oj-bind-if test="[[btnAction() == 'update' ]]">
+                        <oj-button id="btnUpdate" class="oj-button-sm" display="icons" on-oj-action="[[updateStudentCredential]]" style="width: 100px;margin-right: 10px;">
+                            Update
+                        </oj-button>
+                        <oj-button id="btnSend" class="oj-button-sm" display="icons" on-oj-action="[[sendCredential]]" style="width: 100px;">
+                            Send
+                        </oj-button>
+                        </oj-bind-if>
+                        <p class="oj-text-color-danger" id="partnerCredentialMessage" style="display: none;margin-left:10px;">Please select partner</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<oj-bind-if test="[[userRole() === 'admin' ]]">
-    <div class="oj-flex oj-sm-justify-content-center" style="margin-bottom: 30px;">
-        <oj-button id="button1" on-oj-action="[[deletePerson]]" style="background-color: #d9534f;">Delete Student</oj-button>
-    </div>
-</oj-bind-if>
-<oj-bind-if test="[[userRole() === 'director' ]]">
-    <div class="oj-flex oj-sm-justify-content-center" style="margin-bottom: 30px;">
-        <oj-button id="button1" on-oj-action="[[deletePerson]]" style="background-color: #d9534f;">Delete Student</oj-button>
-    </div>
-</oj-bind-if>
+
 <br>
 
 <oj-dialog id="addLog" style="width: 1000px;">
@@ -577,3 +608,12 @@
         </oj-button>
     </div>
 </oj-dialog>
+
+<oj-popup id="progress" class="demo-popup" auto-dismiss="none" modality="modal" position.my.horizontal="center"
+    position.my.vertical="center" position.at.horizontal="center" position.at.vertical="center" position.of="window" tail="none">
+    <div class="demo-popup-body">
+        <div class="demo-popup-content oj-sm-padding-2x">
+            <oj-progress-circle id="progressCircle" value="-1"></oj-progress-circle>
+        </div>
+    </div>
+</oj-popup>

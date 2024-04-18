@@ -1185,7 +1185,10 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                 self.yearsDp = new ArrayDataProvider(self.years(), {
                     keyAttributes: 'value'
                 });
-
+                
+                self.studentEmail = ko.observable('');
+                self.password = ko.observable('');
+                self.btnAction = ko.observable('');
 
                 self.getStudent = (studentId)=>{
                     $.ajax({
@@ -1259,12 +1262,14 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                     return [
                         { label: 'Personal Details', id: '1' + '-' + trainName },
                         { label: 'Applications', id: '2' + '-' + trainName },
+                        { label: 'Student Credentials', id: '3' + '-' + trainName },
                     ];
                 };       
                 self.selectedStep2 = ko.observable('stp1');
                 self.stepArray2 = ko.observableArray([
                     { label: 'Personal Details', id: 'stp1' },
-                    { label: 'Applications', id: 'stp2' }
+                    { label: 'Applications', id: 'stp2' },
+                    { label: 'Student Credentials', id: 'stp3' }
                 ]);
 
                 self.update2 = (event) => {
@@ -1273,13 +1278,25 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                     if (selectedStep2.id == "stp1") {
                         let personalDiv = document.getElementById("personalInfo");
                         let applicationDiv = document.getElementById("application");
+                        let credentialDiv = document.getElementById("credential");
                         applicationDiv.style.display = "none"
                         personalDiv.style.display = "block"
+                        credentialDiv.style.display = "none"
                     }
-                    else{
+                    else if (selectedStep2.id == "stp2") {
                         let personalDiv = document.getElementById("personalInfo");
                         let applicationDiv = document.getElementById("application");
+                        let credentialDiv = document.getElementById("credential");
                         applicationDiv.style.display = "block"
+                        personalDiv.style.display = "none"
+                        credentialDiv.style.display = "none"
+                    }
+                    else if (selectedStep2.id == "stp3") {
+                        let personalDiv = document.getElementById("personalInfo");
+                        let applicationDiv = document.getElementById("application");
+                        let credentialDiv = document.getElementById("credential");
+                        credentialDiv.style.display = "block"
+                        applicationDiv.style.display = "none"
                         personalDiv.style.display = "none"
                     }
                 };
@@ -2252,6 +2269,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                     }
                     else {
                         app.onAppSuccess();
+                        self.getStudentPassword();
                     }
                 }
 
@@ -2287,6 +2305,138 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                         }
                     })
                 }
+
+                self.generatePassword = (length) =>{
+                    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]\;?><,./-=1234567890';
+                    let password = '';
+                    
+                    for (let i = 0; i < length; i++) {
+                      const randomIndex = Math.floor(Math.random() * charset.length);
+                      password += charset[randomIndex];
+                    }
+                    
+                    self.password(password)
+                }
+    
+                self.addStudentUser = ()=>{
+                        const credentialFormValid = self._checkValidationGroup("credentialValidation"); 
+                        if(credentialFormValid && self.email() != ''){
+                                let popup = document.getElementById("progress");
+                                popup.open();
+                                $.ajax({
+                                    url: BaseURL+"/addStudentUser",
+                                    type: 'POST',
+                                    data: JSON.stringify({
+                                        name : self.firstName() + " " + self.lastName(),
+                                        office : self.office1(),
+                                        role : 'student',
+                                        email : self.email(),
+                                        password : self.password(),
+                                        //partnerId:self.partner(),
+                                        studentId:self.student(),
+                                    }),
+                                    dataType: 'json',
+                                    timeout: sessionStorage.getItem("timeInetrval"),
+                                    context: self,
+                                    error: function (xhr, textStatus, errorThrown) {
+                                        console.log(textStatus);
+                                    },
+                                    success: function (data) {
+                                        console.log(data)
+                                        let popup = document.getElementById("progress");
+                                        popup.close();
+                                        self.getStudentPassword();
+                                    }
+                                })
+                            }
+                    }
+    
+                    self.updateStudentCredential = ()=>{
+                            const credentialFormValid = self._checkValidationGroup("credentialValidation"); 
+                            if(credentialFormValid && self.email() != ''){
+                                    let popup = document.getElementById("progress");
+                                    popup.open();
+                                        $.ajax({
+                                            url: BaseURL+"/updateStudentCredential",
+                                            type: 'POST',
+                                            data: JSON.stringify({
+                                                password : self.password(),
+                                                studentId:self.student(),
+                                            }),
+                                            dataType: 'json',
+                                            timeout: sessionStorage.getItem("timeInetrval"),
+                                            context: self,
+                                            error: function (xhr, textStatus, errorThrown) {
+                                                console.log(textStatus);
+                                            },
+                                            success: function (data) {
+                                               console.log(data)
+                                               let popup = document.getElementById("progress");
+                                               popup.close();
+                                            }
+                                        })
+                                    }
+                    }
+    
+                    self.sendCredential = ()=>{
+                        if(self.partnerId()==undefined){
+                            document.getElementById("partnerCredentialMessage").style.display = "block";
+                            setTimeout(()=>{
+                                document.getElementById("partnerCredentialMessage").style.display = "none";
+                            }, 5000);
+                        }else{
+                            const credentialFormValid = self._checkValidationGroup("credentialValidation"); 
+                            if(credentialFormValid && self.partnerEmail() != ''){
+                                    let popup = document.getElementById("progress");
+                                    popup.open();
+                                        $.ajax({
+                                            url: BaseURL+"/sendPartnerCredential",
+                                            type: 'POST',
+                                            data: JSON.stringify({
+                                                name : self.partnerName(),
+                                                email : self.partnerEmail(),
+                                                password : self.password(),
+                                            }),
+                                            dataType: 'json',
+                                            timeout: sessionStorage.getItem("timeInetrval"),
+                                            context: self,
+                                            error: function (xhr, textStatus, errorThrown) {
+                                                console.log(textStatus);
+                                            },
+                                            success: function (data) {
+                                               console.log(data)
+                                               let popup = document.getElementById("progress");
+                                               popup.close();
+                                            }
+                                        })
+                                    }
+                                }
+                    }
+    
+                    self.getStudentPassword = ()=>{
+                        $.ajax({
+                            url: BaseURL+"/getStudentPassword",
+                            type: 'POST',
+                            data: JSON.stringify({
+                                studentId:self.student(),
+                            }),
+                            dataType: 'json',
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.log(textStatus);
+                            },
+                            success: function (data) {
+                            if(data[0]!='No data found'){
+                                data = JSON.parse(data);
+                                console.log(data)
+                                self.password(data[0][0])
+                                self.btnAction('update');
+                            }else{
+                              self.generatePassword(8);
+                              self.btnAction('save');
+                            }
+                            }
+                        })
+                    }
 
             }
         }
