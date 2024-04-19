@@ -118,6 +118,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                 self.loginUrl = ko.observable('');
                 self.userName = ko.observable('');
                 self.password = ko.observable('');
+                self.studentPassword = ko.observable('');
                 self.applicationMethod = ko.observable('');
                 self.counsellingType = ko.observable('');
                 self.ielts = ko.observable([])
@@ -2315,7 +2316,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                       password += charset[randomIndex];
                     }
                     
-                    self.password(password)
+                    self.studentPassword(password)
                 }
     
                 self.addStudentUser = ()=>{
@@ -2331,7 +2332,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                                         office : self.office1(),
                                         role : 'student',
                                         email : self.email(),
-                                        password : self.password(),
+                                        password : self.studentPassword(),
                                         //partnerId:self.partner(),
                                         studentId:self.student(),
                                     }),
@@ -2360,7 +2361,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                                             url: BaseURL+"/updateStudentCredential",
                                             type: 'POST',
                                             data: JSON.stringify({
-                                                password : self.password(),
+                                                password : self.studentPassword(),
                                                 studentId:self.student(),
                                             }),
                                             dataType: 'json',
@@ -2389,7 +2390,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                                             data: JSON.stringify({
                                                 name : self.firstName() + " " + self.lastName(),
                                                 email : self.email(),
-                                                password : self.password(),
+                                                password : self.studentPassword(),
                                             }),
                                             dataType: 'json',
                                             timeout: sessionStorage.getItem("timeInetrval"),
@@ -2421,7 +2422,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                             if(data[0]!='No data found'){
                                 data = JSON.parse(data);
                                 console.log(data)
-                                self.password(data[0][0])
+                                self.studentPassword(data[0][0])
                                 self.btnAction('update');
                             }else{
                               self.generatePassword(8);
