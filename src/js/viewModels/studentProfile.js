@@ -2379,22 +2379,16 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                     }
     
                     self.sendCredential = ()=>{
-                        if(self.partnerId()==undefined){
-                            document.getElementById("partnerCredentialMessage").style.display = "block";
-                            setTimeout(()=>{
-                                document.getElementById("partnerCredentialMessage").style.display = "none";
-                            }, 5000);
-                        }else{
                             const credentialFormValid = self._checkValidationGroup("credentialValidation"); 
-                            if(credentialFormValid && self.partnerEmail() != ''){
+                            if(credentialFormValid && self.email() != ''){
                                     let popup = document.getElementById("progress");
                                     popup.open();
                                         $.ajax({
-                                            url: BaseURL+"/sendPartnerCredential",
+                                            url: BaseURL+"/sendStudentCredential",
                                             type: 'POST',
                                             data: JSON.stringify({
-                                                name : self.partnerName(),
-                                                email : self.partnerEmail(),
+                                                name : self.firstName() + " " + self.lastName(),
+                                                email : self.email(),
                                                 password : self.password(),
                                             }),
                                             dataType: 'json',
@@ -2410,7 +2404,6 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                                             }
                                         })
                                     }
-                                }
                     }
     
                     self.getStudentPassword = ()=>{
