@@ -83,7 +83,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "guideManagePartner", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "guideManagePartnerView", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "bulkAssignStudents", detail: { label: "Bulk assign Students", iconClass: "fa-solid fa-magnifying-glass", },},
-        { path: "studentDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
+        { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
       ];
     } else if (sessionStorage.getItem("userRole") == "manager") {
       var navData = [
@@ -134,7 +134,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "guideManagePartner", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "guideManagePartnerView", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "managerBulkAssignStudents", detail: { label: "Bulk assign Students", iconClass: "fa-solid fa-magnifying-glass", },},
-        { path: "studentDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
+        { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
       ];
     } else if (sessionStorage.getItem("userRole") == "partner") {
       var navData = [
@@ -156,14 +156,15 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "guideManagePartner", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "guideManagePartnerView", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "help", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
-        { path: "studentDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
+        { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
       ];
     } 
     else if (sessionStorage.getItem("userRole") == "student") {
       var navData = [
         { path: "", redirect: "signin" },
         { path: "signin", detail: { label: "Signin", iconClass: "oj-ux-ico-bar-chart" }, },
-        { path: "studentDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
+        { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
+        { path: "managerDashboard", detail: { label: "Manager Dashboard", iconClass: "fa-solid fa-gauge", }, },
       ];
     }    
     else {
@@ -199,7 +200,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "guideManageInstitution", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "guideManagePartner", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "guideManagePartnerView", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
-        { path: "studentDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
+        { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
       ];
     }
     
@@ -303,7 +304,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
     }
     else if (sessionStorage.getItem("userRole") == "student") {
       self.navMenu = [
-        {"name": "Dashboard","id": "home","icons": "fa-solid fa-gauge", "path":"studentDashboard"},
+        {"name": "My Profile","id": "home","icons": "fa-solid fa-user-plus", "path":"myProfile"},
         /* {"name": "Student", "id": "student", "icons": "oj-ux-ico-education", 
           "children": [
             {"name": "Add Student","id": "addStudent","icons": "fa-solid fa-user-plus", "path":"addStudent"},
@@ -516,7 +517,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         router.go({ path: "partnerDashboard" });
       }
       else if (sessionStorage.getItem("userRole") == "student") {
-        router.go({ path: "studentDashboard" });
+        router.go({ path: "myProfile" });
       } else {
         router.go({ path: "counsellorDashboard" });
       }
