@@ -24,35 +24,35 @@
             <h6 style="font-weight: 500;font-size: 22px;color: #06668a;">Personal Details</h6>
             <div class="oj-panel">
                 <oj-form-layout id="personal-information" direction="row" max-columns="3" style="padding: 20px;">
-                    <oj-input-text id="firstname" label-hint="First Name" required="true"  value="{{firstName}}"></oj-input-text>
-                    <oj-input-text id="lastName" label-hint="Last Name" required="true"  value="{{lastName}}"></oj-input-text>
+                    <oj-input-text id="firstname" label-hint="First Name" required="true"  value="{{firstName}}" readonly="true"></oj-input-text>
+                    <oj-input-text id="lastName" label-hint="Last Name" required="true"  value="{{lastName}}" readonly="true"></oj-input-text>
                     <div class="oj-flex">
                         <div class="oj-flex-item oj-sm-5 oj-sm-padding-2x-end oj-md-padding-3x-end">
                             <oj-select-single required id="nearestOffice" label-hint="Country Code" label-edge="inside"
-                                data="[[countryCodes]]" value="{{countryCode}}"></oj-select-single>
+                                data="[[countryCodes]]" value="{{countryCode}}" readonly="true"></oj-select-single>
                         </div>
                         <div class="oj-flex-item oj-sm-7 oj-sm-padding-2x-start oj-md-padding-3x-start">
-                            <oj-input-text id="mobile" label-hint="Mobile number" required="true"  value="{{mobileNumber}}"></oj-input-text>
+                            <oj-input-text id="mobile" label-hint="Mobile number" required="true"  value="{{mobileNumber}}" readonly="true"></oj-input-text>
                         </div>
                     </div>
                     <oj-select-single id="select" label-hint="Gender" label-edge="inside" class="oj-form-control-max-width-md" 
-                        data="[[genderSet]]" value="{{gender}}" style="width: 100%;"></oj-select-single>
-                    <oj-input-text id="email" label-hint="Email" required="true"  value="{{email}}"></oj-input-text>
-                    <oj-input-text id="euStatus" label-hint="EU Status" value="{{euStatus}}"></oj-input-text>
-                    <oj-input-date id="euStatus" label-hint="Date of birth" value="{{dob}}" autocomplete="off"></oj-input-date>
+                        data="[[genderSet]]" value="{{gender}}" style="width: 100%;" readonly="true"></oj-select-single>
+                    <oj-input-text id="email" label-hint="Email" required="true"  value="{{email}}" readonly="true"></oj-input-text>
+                    <oj-input-text id="euStatus" label-hint="EU Status" value="{{euStatus}}" readonly="true"></oj-input-text>
+                    <oj-input-date id="euStatus" label-hint="Date of birth" value="{{dob}}" autocomplete="off" readonly="true"></oj-input-date>
                     <oj-select-single id="select" label-hint="Nationality" label-edge="inside"
-                        data="[[nationalitySet]]" value="{{nationality}}"></oj-select-single>
-                    <oj-input-text id="countryOfBirth" label-hint="Country of birth" value="{{countryBirth}}"></oj-input-text>
-                    <oj-input-text id="enquiryAbout" label-hint="Enquiry About" value="{{enquiryAbout}}"></oj-input-text>
+                        data="[[nationalitySet]]" value="{{nationality}}" readonly="true"></oj-select-single>
+                    <oj-input-text id="countryOfBirth" label-hint="Country of birth" value="{{countryBirth}}" readonly="true"></oj-input-text>
+                    <oj-input-text id="enquiryAbout" label-hint="Enquiry About" value="{{enquiryAbout}}" readonly="true"></oj-input-text>
                     <oj-select-single required id="select" label-hint="Study abroad Destination" label-edge="inside"
-                        data="[[abroadDestionationsDp]]" value="{{studyAbroadDestination}}"></oj-select-single>
+                        data="[[abroadDestionationsDp]]" value="{{studyAbroadDestination}}" readonly="true"></oj-select-single>
                     <oj-select-single required id="select" label-hint="Hear about Uniwatcher" label-edge="inside"
-                        data="[[hearAboutSet]]" value="{{hearAbout}}"></oj-select-single>
+                        data="[[hearAboutSet]]" value="{{hearAbout}}" readonly="true"></oj-select-single>
                     <oj-select-single id="select" label-hint="Year of intake" label-edge="inside"
-                        data="[[yearsDp]]" value="{{yearIntake}}"></oj-select-single>
-                    <oj-input-text id="utm_source" label-hint="Campaign Source" value="{{utmSource}}" readonly="true"></oj-input-text>
-                    <oj-input-text id="utm_medium" label-hint="Campaign Medium" value="{{utmMedium}}" readonly="true"></oj-input-text>
-                    <oj-input-text id="utm_campaign" label-hint="Campaign Name" value="{{utmCampaign}}" readonly="true"></oj-input-text>
+                        data="[[yearsDp]]" value="{{yearIntake}}" readonly="true"></oj-select-single>
+                    <oj-input-text id="utm_source" label-hint="Campaign Source" value="{{utmSource}}" readonly="true" readonly="true"></oj-input-text>
+                    <oj-input-text id="utm_medium" label-hint="Campaign Medium" value="{{utmMedium}}" readonly="true" readonly="true"></oj-input-text>
+                    <oj-input-text id="utm_campaign" label-hint="Campaign Name" value="{{utmCampaign}}" readonly="true" readonly="true"></oj-input-text>
                 </oj-form-layout>
                <!--  <div class="oj-flex oj-sm-justify-content-center">
                     <oj-button id="button1" on-oj-action="[[personalUpdate]]">Update</oj-button>
@@ -358,9 +358,7 @@
                                 {"headerText": "Tution Fee", "field": "TutionFee", "headerClassName": "oj-md-down-hide",
                                     "className": "oj-md-down-hide", "resizable": "enabled", "id": "empCount"},
                                 {"headerText": "Application ID", "field": "applicationId", "headerClassName": "oj-md-down-hide",
-                                    "className": "oj-md-down-hide", "resizable": "enabled", "id": "empCount"},
-                                {"headerText": "Action", "field": "applicationId", "headerClassName": "oj-md-down-hide",
-                                    "className": "oj-md-down-hide", "resizable": "enabled", "id": "empCount", "sortable": "disabled"}
+                                    "className": "oj-md-down-hide", "resizable": "enabled", "id": "empCount"}
                                 ]'
                             style="width: 100%;">
 
@@ -388,12 +386,6 @@
                                     </td>
                                     <td>
                                         <oj-bind-text value="[[row.data.applicationId]]"></oj-bind-text>
-                                    </td>
-                                    <td>
-                                        <oj-button :id="[[row.data.applicationId]]" display="icons" style="background-color: #d9534f;"
-                                            on-oj-action="[[removeFinalChoice]]">
-                                            Remove
-                                        </oj-button>
                                     </td>
                                 </tr>
                             </template>
@@ -501,53 +493,53 @@
     <div slot="body">
         <oj-form-layout id="personal-information" direction="row" max-columns="3">
             <oj-select-single id="coursetypeEdit" label-hint="Course type" label-edge="inside" class="oj-form-control-max-width-md"
-                data="[[courseTypeSet]]" value="{{coursetypeEdit}}"></oj-select-single>
+                data="[[courseTypeSet]]" value="{{coursetypeEdit}}" readonly="true"></oj-select-single>
             <oj-select-single data="[[countrySet]]" value="{{country}}" label-hint="Institution Country"
-                on-oj-value-action="[[countryChangeHandler]]"></oj-select-single>
-            <oj-select-single data="[[institutionSet]]" value="{{institutionIdEdit}}" required="true" label-hint="Institution" on-oj-value-action="[[instituteChangeEditHandler]]"></oj-select-single>
-            <oj-input-text id="universityEdit" label-hint="Institution Name" required="true" value="{{universityEdit}}" readonly=""></oj-input-text>
-            <oj-input-date value="{{courseStartDateEdit}}" label-hint="Course Start Date" autocomplete="off"></oj-input-date>
-            <oj-input-text id="coursenameEdit" label-hint="Course name" required="true" value="{{coursenameEdit}}"></oj-input-text>
-            <oj-input-date value="{{courseEndDateEdit}}" label-hint="Course End Date" autocomplete="off"></oj-input-date>
-            <oj-input-date value="{{applicationSentDateEdit}}" label-hint="Application Sent Date" autocomplete="off"></oj-input-date>
+                on-oj-value-action="[[countryChangeHandler]]" readonly="true"></oj-select-single>
+            <oj-select-single data="[[institutionSet]]" value="{{institutionIdEdit}}" required="true" label-hint="Institution" on-oj-value-action="[[instituteChangeEditHandler]]" readonly="true"></oj-select-single>
+            <oj-input-text id="universityEdit" label-hint="Institution Name" required="true" value="{{universityEdit}}" readonly="true"></oj-input-text>
+            <oj-input-date value="{{courseStartDateEdit}}" label-hint="Course Start Date" autocomplete="off" readonly="true"></oj-input-date>
+            <oj-input-text id="coursenameEdit" label-hint="Course name" required="true" value="{{coursenameEdit}}" readonly="true"></oj-input-text>
+            <oj-input-date value="{{courseEndDateEdit}}" label-hint="Course End Date" autocomplete="off" readonly="true"></oj-input-date>
+            <oj-input-date value="{{applicationSentDateEdit}}" label-hint="Application Sent Date" autocomplete="off" readonly="true"></oj-input-date>
              <oj-select-single id="Partner Name" label-hint="Select Partner" label-edge="inside" 
                 data="[[partnersDp]]" value="{{partnerEdit}}" readonly="true"></oj-select-single>             
             <oj-form-layout direction="row" columns="2">
                 <oj-select-single id="select" label-hint="Currency" label-edge="inside" class="oj-form-control-max-width-md"
-                    data="[[currenciesSet]]" value="{{tutionFeeCurrencyEdit}}"></oj-select-single>
-                <oj-input-number id="input-number-validator" value="{{tutionFeeEdit}}" label-hint="Tution fee"></oj-input-number>
+                    data="[[currenciesSet]]" value="{{tutionFeeCurrencyEdit}}" readonly="true"></oj-select-single>
+                <oj-input-number id="input-number-validator" value="{{tutionFeeEdit}}" label-hint="Tution fee" readonly="true"></oj-input-number>
             </oj-form-layout>
-            <oj-input-text id="loginurlEdit" label-hint="Login URL" autocomplete="off" value="{{loginurlEdit}}"></oj-input-text>
-            <oj-input-text id="usernameEdit" label-hint="Username" autocomplete="off" value="{{usernameEdit}}"></oj-input-text>
-            <oj-input-text id="passwordEdit" label-hint="Password" autocomplete="off" value="{{passwordEdit}}"></oj-input-text>
-            <oj-input-text id="applicationMethod" label-hint="Application method" value="{{applicationMethodEdit}}"></oj-input-text>
-            <oj-input-text id="counsellingType" label-hint="Councelling Type" value="{{counsellingTypeEdit}}"></oj-input-text>
-            <oj-input-date value="{{offerCreationDateEdit}}" label-hint="Offer Creation Date" autocomplete="off"></oj-input-date>
+            <oj-input-text id="loginurlEdit" label-hint="Login URL" autocomplete="off" value="{{loginurlEdit}}" readonly="true"></oj-input-text>
+            <oj-input-text id="usernameEdit" label-hint="Username" autocomplete="off" value="{{usernameEdit}}" readonly="true"></oj-input-text>
+            <oj-input-text id="passwordEdit" label-hint="Password" autocomplete="off" value="{{passwordEdit}}" readonly="true"></oj-input-text>
+            <oj-input-text id="applicationMethod" label-hint="Application method" value="{{applicationMethodEdit}}" readonly="true"></oj-input-text>
+            <oj-input-text id="counsellingType" label-hint="Councelling Type" value="{{counsellingTypeEdit}}" readonly="true"></oj-input-text>
+            <oj-input-date value="{{offerCreationDateEdit}}" label-hint="Offer Creation Date" autocomplete="off" readonly="true"></oj-input-date>
             <oj-select-single id="select" label-hint="Offer Decision Type" label-edge="inside" class="oj-form-control-max-width-md"
-                data="[[decisionTypeDp]]" value="{{offerDecisionTypeEdit}}"></oj-select-single>
-            <oj-input-text id="referenceNoEdit" label-hint="Reference No" autocomplete="off" value="{{referenceNoEdit}}"></oj-input-text>
+                data="[[decisionTypeDp]]" value="{{offerDecisionTypeEdit}}" readonly="true"></oj-select-single>
+            <oj-input-text id="referenceNoEdit" label-hint="Reference No" autocomplete="off" value="{{referenceNoEdit}}" readonly="true"></oj-input-text>
             <oj-form-layout direction="row" columns="2">
                 <oj-select-single id="select" label-hint="Currency" label-edge="inside" class="oj-form-control-max-width-md"
-                    data="[[currenciesSet]]" value="{{depositCurrency}}"></oj-select-single>
-                <oj-input-number id="input-number-validator" value="{{depositAmountEdit}}" label-hint="Deposit Amount"></oj-input-number>
+                    data="[[currenciesSet]]" value="{{depositCurrency}}" readonly="true"></oj-select-single>
+                <oj-input-number id="input-number-validator" value="{{depositAmountEdit}}" label-hint="Deposit Amount" readonly="true"></oj-input-number>
             </oj-form-layout>
-            <oj-checkboxset id="depositIsNotRequired" label-hint="Deposit is not required" value="{{depositIsNotRequiredEdit}}">
+            <oj-checkboxset id="depositIsNotRequired" label-hint="Deposit is not required" value="{{depositIsNotRequiredEdit}}" disabled>
                 <oj-option value="depositIsNotRequired">Deposit is not required</oj-option>
             </oj-checkboxset>
-            <oj-input-date value="{{depositPaidDateEdit}}" label-hint="Deposit paid Date" autocomplete="off"></oj-input-date>
-            <oj-input-date value="{{visaAppliedDateEdit}}" label-hint="Visa applied date" autocomplete="off"></oj-input-date>
+            <oj-input-date value="{{depositPaidDateEdit}}" label-hint="Deposit paid Date" autocomplete="off" readonly="true"></oj-input-date>
+            <oj-input-date value="{{visaAppliedDateEdit}}" label-hint="Visa applied date" autocomplete="off" readonly="true"></oj-input-date>
             <oj-select-single id="select" label-hint="Visa Decision" label-edge="inside" class="oj-form-control-max-width-md"
-                data="[[visaDecisionTypeDp]]" value="{{visaDecisionTypeEdit}}"></oj-select-single>
-            <oj-input-date value="{{visaDecisionDateEdit}}" label-hint="Visa decision date" autocomplete="off"></oj-input-date>
+                data="[[visaDecisionTypeDp]]" value="{{visaDecisionTypeEdit}}" readonly="true"></oj-select-single>
+            <oj-input-date value="{{visaDecisionDateEdit}}" label-hint="Visa decision date" autocomplete="off" readonly="true"></oj-input-date>
             <oj-checkboxset id="casIssued" label-hint="CAS Issued" value="{{casIssuedEdit}}">
-                <oj-option value="casIssued">CAS Issued</oj-option>
+                <oj-option value="casIssued" disabled>CAS Issued</oj-option>
             </oj-checkboxset>
             <oj-checkboxset id="ieltsEdit" label-hint="IELTS/English test required" value="{{ieltsEdit}}">
-                <oj-option value="ielts">IELTS/English test required</oj-option>
+                <oj-option value="ielts" disabled>IELTS/English test required</oj-option>
             </oj-checkboxset>
 
             <div>
-                <oj-file-picker primary-text="Offer file upload" on-oj-select="[[selectListener]]"></oj-file-picker>
+                <oj-file-picker primary-text="Offer file upload" on-oj-select="[[selectListener]]" disabled></oj-file-picker>
                 <oj-bind-if test="[[offerFile() != '' ]]">
                     <div class="oj-flex  oj-sm-justify-content-space-around" style="margin-top: 10px;align-items: center;">
                         <a id="offerFile" on-click= "[[previewClick]]" target="_blank">
@@ -569,11 +561,11 @@
         <div class="oj-flex oj-sm-justify-content-center">
             <p class="oj-text-color-success"><oj-bind-text value="[[waitText]]"></oj-bind-text></p>
         </div>
-        <div class="oj-flex oj-sm-justify-content-center">
+       <!--  <div class="oj-flex oj-sm-justify-content-center">
             <oj-button :id="[[editApplicationId]]" class="oj-button-sm" display="icons" on-oj-action="[[updateApplication]]">
                 Update
             </oj-button>
-        </div>
+        </div> -->
     </div>
 </oj-dialog>
 
