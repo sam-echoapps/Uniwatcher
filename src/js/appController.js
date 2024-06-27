@@ -84,6 +84,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "guideManagePartnerView", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "bulkAssignStudents", detail: { label: "Bulk assign Students", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
+        { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
       ];
     } else if (sessionStorage.getItem("userRole") == "manager") {
       var navData = [
@@ -157,6 +158,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "guideManagePartnerView", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "help", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
+        { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
       ];
     } 
     else if (sessionStorage.getItem("userRole") == "student") {
@@ -165,6 +167,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "signin", detail: { label: "Signin", iconClass: "oj-ux-ico-bar-chart" }, },
         { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
         { path: "managerDashboard", detail: { label: "Manager Dashboard", iconClass: "fa-solid fa-gauge", }, },
+        { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
       ];
     }    
     else {
@@ -201,6 +204,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "guideManagePartner", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "guideManagePartnerView", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
+        { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
       ];
     }
     
@@ -385,8 +389,8 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
     self.reminderData = ko.observableArray(new Array());
     self.reminderCount = ko.observable();
     $.ajax({
-      url: "http://169.197.183.168:8040/getUserReminderNotes",
-      //url: "/getUserReminderNotes",
+      //url: "http://169.197.183.168:8040/getUserReminderNotes",
+      url: "/getUserReminderNotes",
       type: "POST",
       data: JSON.stringify({
         userId: self.userId(),
@@ -476,8 +480,8 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         document.querySelector("#RemoteDeploymentDialog").open();
         self.onepDeployList([]);
         $.ajax({
-          url: "http://169.197.183.168:8040/onepdep",
-          //url: "/onepdep",
+          //url: "http://169.197.183.168:8040/onepdep",
+          url: "/onepdep",
           type: "GET",
           dataType: "json",
           context: self,
